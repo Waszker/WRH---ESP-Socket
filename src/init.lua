@@ -1,3 +1,5 @@
+-- File changed by Piotr Waszkiewicz on 22.04.2016
+
 -- Compile server code and remove original .lua files.
 -- This only happens the first time afer the .lua files are uploaded.
 
@@ -5,22 +7,27 @@
 gpio.mode(4, gpio.OUTPUT)
 gpio.mode(3, gpio.INT, gpio.PULLUP)
 
-local pressed = function()
+-- Prepare global variables that will help to deal with tactile switch
+-- 'bouncing problem'
+isChangeInProgress = false
+
+gpio.trig(3, "up", function()
    tmr.delay(300)
+   if isChangeInProgress == true then
+      do return end
+   end
+   
+   isChangeInProgress = true
    if(gpio.read(4) == gpio.HIGH) then
       gpio.write(4, gpio.LOW);
    else
       gpio.write(4, gpio.HIGH);
    end
-   gpio.trig(3, "up", released)
-end
 
-local released = function()
-   tmr.delay(20)
-   gpio.trig(3, "up", pressed)
-end
-
-gpio.trig(3, "up", pressed)
+   tmr.alarm(1, 300, 0, function()
+	isChangeInProgress = false	
+   end)
+end)
 
 -- Helper function
 local compileAndRemoveIfNeeded = function(f)
@@ -86,7 +93,7 @@ end
 -- Open file with SSID and passwords, then try to find what network is in range
 if file.open("ap_list.txt", "r") == nil then
    -- If there is no such file, create AP and wait for user interaction
-   -- TODO: Determine if file.close() is neede here?
+   -- TODO: Determine if file.close() is needed here?
    print('No list of AP')
    createAP(wifiConfig)
    print('Freeing RAM')
@@ -94,16 +101,13 @@ if file.open("ap_list.txt", "r") == nil then
    collectgarbage()
    dofile("httpserver.lc")(80)
 else
+   -- Asume that file has two lines
+   -- first one holds ssid value
+   -- second one holds password
    wifi.setmode(wifi.STATION)    
    print('Client MAC: ',wifi.sta.getmac())
-   ssid = file.readline()
-   while ssid ~= nil
-   do
-      wifiConfig.stationPointConfig.ssid = string.gsub(ssid, '\n', '')
-      wifiConfig.stationPointConfig.pwd = string.gsub(file.readline(), '\n', '')
-      -- TODO: Check if ssid if present in ap list
-      ssid = file.readline()
-   end
+   wifiConfig.stationPointConfig.ssid = string.gsub(file.readline(), '\n', '')
+   wifiConfig.stationPointConfig.pwd = string.gsub(file.readline(), '\n', '')
    print('Connecting to '..wifiConfig.stationPointConfig.ssid..' with pwd '..wifiConfig.stationPointConfig.pwd)
    wifi.sta.config(wifiConfig.stationPointConfig.ssid, wifiConfig.stationPointConfig.pwd, 1)
    file.close()

@@ -4,7 +4,7 @@ end
 
 return function (connection, req, args)
    dofile("httpserver-header.lc")(connection, 200, 'html')
-   connection:send('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>A Lua script sample</title></head><body><h1>Node info</h1><ul>')
+   connection:send('<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>A Lua script sample</title></head><body><div align="center"><h1>Node info</h1><ul>')
    majorVer, minorVer, devVer, chipid, flashid, flashsize, flashmode, flashspeed = node.info();
    sendAttr(connection, "NodeMCU version"       , majorVer.."."..minorVer.."."..devVer)
    sendAttr(connection, "chipid"                , chipid)
@@ -16,5 +16,5 @@ return function (connection, req, args)
    sendAttr(connection, 'Memory in use (KB)'    , collectgarbage("count"))
    sendAttr(connection, 'IP address'            , wifi.sta.getip())
    sendAttr(connection, 'MAC address'           , wifi.sta.getmac())
-   connection:send('</ul></body></html>')
+   connection:send('</ul></div></body></html>')
 end

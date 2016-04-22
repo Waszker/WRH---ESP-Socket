@@ -3,7 +3,7 @@ return function (connection, req, args)
 
    connection:send([===[
       <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Server File Listing</title></head>
-      <body>
+      <body><div align="center">
    <h1>Server File Listing</h1>
    ]===])
 
@@ -20,6 +20,6 @@ return function (connection, req, args)
          connection:send('   <li><a href="' .. url .. '">' .. url .. "</a> (" .. size .. " bytes)</li>\n")
       end
    end
-   connection:send("</ul>\n</p>\n</body></html>")
+   connection:send("</ul>\n</p>\n</div>\n</body></html>")
 end
 

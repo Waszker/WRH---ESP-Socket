@@ -2,6 +2,7 @@ return function (connection, req, args)
    dofile("httpserver-header.lc")(connection, 200, 'html')
    connection:send([===[
    <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Set socket state</title></head><body><div align="center"><h1>Set socket state</h1>
+   <p align="center"><button onclick="window.location.href='/index.html'">MENU</button></p>
    <p align="center"><button onclick="window.location = window.location.pathname">RELOAD</button></p>
    <table border=\"1\" style=\"margin: 0px auto;\"><tr>
    ]===])
@@ -11,11 +12,15 @@ return function (connection, req, args)
       for name, value in pairs(args) do
 	 -- Code to invoke goes here
 	 if tostring(name) == "state" then
-	    state = gpio.LOW
+	    local state = gpio.LOW
             if tostring(value) == "ON" then
                state = gpio.HIGH
             end
             gpio.write(4, state)
+            isChangeInProgress = true
+	    tmr.alarm(1, 300, 0, function()
+	       isChangeInProgress = false	
+            end)
 	 elseif tostring(name) == 'wait' and tostring(value) ~= '' and tonumber(value) > 0 then
 	    print(tonumber(value))
             tmr.alarm(0, 1000 * tonumber(value), 0, function()
