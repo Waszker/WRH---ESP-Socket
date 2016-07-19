@@ -11,9 +11,9 @@ gpio.mode(3, gpio.INT, gpio.PULLUP)
 -- 'bouncing problem'
 isChangeInProgress = false
 
-gpio.trig(3, "up", function()
+gpio.trig(3, "down", function()
    tmr.delay(300)
-   if isChangeInProgress == true then
+   if isChangeInProgress == true or gpio.read(3) == gpio.HIGH then
       do return end
    end
    

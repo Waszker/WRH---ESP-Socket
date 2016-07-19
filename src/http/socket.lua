@@ -7,7 +7,11 @@ return function (connection, req, args)
    <table border=\"1\" style=\"margin: 0px auto;\"><tr>
    ]===])
 
-   tmr.stop(0)
+   -- Cancel working timer if user has made some input regarding socket state
+   for name, value in pairs(args) do
+      if tostring(name) == "state" then tmr.stop(0) end
+   end
+
    if args.submit ~= nil or true then
       for name, value in pairs(args) do
 	 -- Code to invoke goes here
@@ -46,6 +50,6 @@ return function (connection, req, args)
    -- TODO: This code does not actually submit form
    connection:send("<td align=\"center\" valign=\"middle\"> <form method=\"GET\" id=\"form1\"> <input type=\"number\" name=\"wait\" />")
    connection:send("<button type=\"submit\" name=\"state\" form=\"form1\" value=\""..change.."\">"..change.."</button>")
-   connection:send("<tr/></table></div></body></html>")
+   connection:send("</form></td><tr/></table></div></body></html>")
 end
 
