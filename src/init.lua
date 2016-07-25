@@ -12,6 +12,10 @@ gpio.mode(3, gpio.INT, gpio.PULLUP)
 isChangeInProgress = false
 
 gpio.trig(3, "down", function()
+   if isChangeInProgress == true then
+	do return end
+   end
+
    tmr.delay(300)
    if isChangeInProgress == true or gpio.read(3) == gpio.HIGH then
       do return end
@@ -27,6 +31,8 @@ gpio.trig(3, "down", function()
    tmr.alarm(1, 300, 0, function()
 	isChangeInProgress = false	
    end)
+   -- Cancel working timer if user has made some input regarding socket state
+   tmr.stop(0)
 end)
 
 -- Helper function

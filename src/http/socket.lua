@@ -15,18 +15,17 @@ return function (connection, req, args)
    if args.submit ~= nil or true then
       for name, value in pairs(args) do
 	 -- Code to invoke goes here
-	 if tostring(name) == "state" then
+	 if tostring(name) == "state" and isChangeInProgress == false then
+            isChangeInProgress = true
 	    local state = gpio.LOW
             if tostring(value) == "ON" then
                state = gpio.HIGH
             end
             gpio.write(4, state)
-            isChangeInProgress = true
 	    tmr.alarm(1, 300, 0, function()
 	       isChangeInProgress = false	
             end)
 	 elseif tostring(name) == 'wait' and tostring(value) ~= '' and tonumber(value) > 0 then
-	    print(tonumber(value))
             tmr.alarm(0, 1000 * tonumber(value), 0, function()
 		if(gpio.read(4) == gpio.HIGH) then
 			gpio.write(4, gpio.LOW);
@@ -37,7 +36,6 @@ return function (connection, req, args)
 	 end
       end
    end
-
    local state = "OFF"
    local change = "ON"
    local color = "green"
@@ -46,6 +44,7 @@ return function (connection, req, args)
       change = "OFF"
       color = "red"
    end
+
    connection:send("<td align=\"center\" valign=\"middle\" style=\"color: "..color.."\">"..state.."</td>")
    -- TODO: This code does not actually submit form
    connection:send("<td align=\"center\" valign=\"middle\"> <form method=\"GET\" id=\"form1\"> <input type=\"number\" name=\"wait\" />")
