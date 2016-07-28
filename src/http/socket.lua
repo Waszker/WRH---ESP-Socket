@@ -12,7 +12,7 @@ return function (connection, req, args)
       if tostring(name) == "state" then tmr.stop(0) end
    end
 
-   if args.submit ~= nil or true then
+   if args ~= nil then
       for name, value in pairs(args) do
 	 -- Code to invoke goes here
 	 if tostring(name) == "state" and isChangeInProgress == false then
@@ -36,6 +36,7 @@ return function (connection, req, args)
 	 end
       end
    end
+
    local state = "OFF"
    local change = "ON"
    local color = "green"

@@ -1,22 +1,14 @@
--- File changed by Piotr Waszkiewicz on 22.04.2016
-
--- Compile server code and remove original .lua files.
--- This only happens the first time afer the .lua files are uploaded.
-
--- Turn off relay as soon as possible
-gpio.mode(4, gpio.OUTPUT)
-gpio.mode(3, gpio.INT, gpio.PULLUP)
+-- File changed by Piotr Waszkiewicz on 25.07.2016
 
 -- Prepare global variables that will help to deal with tactile switch
 -- 'bouncing problem'
 isChangeInProgress = false
 
-gpio.trig(3, "down", function()
+function buttonPressFunction()
    if isChangeInProgress == true then
 	do return end
    end
 
-   tmr.delay(300)
    if isChangeInProgress == true or gpio.read(3) == gpio.HIGH then
       do return end
    end
@@ -33,8 +25,16 @@ gpio.trig(3, "down", function()
    end)
    -- Cancel working timer if user has made some input regarding socket state
    tmr.stop(0)
-end)
+end
 
+-- Turn off relay as soon as possible
+-- and prepare other GPIOs' behaviours
+gpio.mode(4, gpio.OUTPUT)
+gpio.mode(3, gpio.INT, gpio.PULLUP)
+gpio.trig(3, "down", buttonPressFunction)
+
+-- Compile server code and remove original .lua files.
+-- This only happens the first time afer the .lua files are uploaded.
 -- Helper function
 local compileAndRemoveIfNeeded = function(f)
    if file.open(f) then
