@@ -9,6 +9,9 @@ function buttonPressFunction()
 	do return end
    end
 
+   -- Generally tmr.delay() function should not be used but screw good practice :)
+   tmr.delay(300)
+
    if isChangeInProgress == true or gpio.read(3) == gpio.HIGH then
       do return end
    end
