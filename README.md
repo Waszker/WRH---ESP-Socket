@@ -19,4 +19,28 @@ Most information provided there applies to this project.
 Coming soon!
 
 ## Production steps
-Coming soon 2!
+Presented steps are not obligatory. I only show my way of creating WiFi Socket. <br /> <br />
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_01.jpg" width=70%>
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_02.jpg" width=70%>
+
+## 1. First of all, cut the hole for LED diode <br />
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_04.jpg" width=70%>
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_03.jpg" width=70%>
+
+## 2. Prepare AC cables <br />
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_05.jpg" width=70%>
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_07.jpg" width=70%>
+
+## 3. Cut the hole for tactile switch <br />
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_08.jpg" width=70%>
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_10.jpg" width=70%>
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_11.jpg" width=70%>
+
+## 4. Solder electronic components <br />
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_12.jpg" width=70%>
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_15.jpg" width=70%>
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_16.jpg" width=70%>
+
+## 5. Combine everything, add relay, connect diode and close all wire connections <br />
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_17.jpg" width=70%>
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/images/step_18.jpg" width=70%>
