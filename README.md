@@ -13,10 +13,12 @@ Most information provided there applies to this project.
 * Tactile Button [like this](http://www.banggood.com/100pcs-Mini-Micro-Momentary-Tactile-Tact-Switch-Push-Button-DIP-P4-p-917570.html)
 * LED Diode [like this](http://www.banggood.com/500Pcs-5MM-LED-Diode-Kit-Mixed-Color-Red-Green-Yellow-Blue-White-p-960647.html)
 * Socket Enclosure [like this](http://www.tme.eu/en/details/cp-z-27_b/power-supplies-enclosures/combiplast/)
+* 1000uF capacitor
+* 10kOhm and 220Ohm resistors
 * Other things like soldering station, soldering iron, etc.
  
-## Schematics
-Coming soon!
+## Schematics <br />
+<img src="https://github.com/Waszker/WRH---ESP-Socket/blob/master/doc/schematics/Scheme.jpg" width=70%>
 
 ## Production steps
 Presented steps are not obligatory. I only show my way of creating WiFi Socket. <br /> <br />
