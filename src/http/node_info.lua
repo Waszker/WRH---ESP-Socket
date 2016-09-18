@@ -1,5 +1,7 @@
 local function sendAttr(connection, attr, val)
+   if val ~= nil then
    connection:send("<li><b>".. attr .. ":</b> " .. val .. "<br></li>\n")
+   end
 end
 
 return function (connection, req, args)

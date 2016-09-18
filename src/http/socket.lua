@@ -47,7 +47,6 @@ return function (connection, req, args)
    end
 
    connection:send("<td align=\"center\" valign=\"middle\" style=\"color: "..color.."\">"..state.."</td>")
-   -- TODO: This code does not actually submit form
    connection:send("<td align=\"center\" valign=\"middle\"> <form method=\"GET\" id=\"form1\"> <input type=\"number\" name=\"wait\" />")
    connection:send("<button type=\"submit\" name=\"state\" form=\"form1\" value=\""..change.."\">"..change.."</button>")
    connection:send("</form></td><tr/></table></div></body></html>")
