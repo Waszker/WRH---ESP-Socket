@@ -14,6 +14,7 @@ SPEED=115200
 HTTP_FILES := $(wildcard http/*)
 LUA_FILES := \
    init.lua \
+   ap.lua \
    httpserver.lua \
    httpserver-b64decode.lua \
    httpserver-basicauth.lua \
