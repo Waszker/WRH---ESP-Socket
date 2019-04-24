@@ -6,7 +6,7 @@ conf.isRelayOn = false
 conf.isLedToggledRegardingRelayState = false
 conf.isWifiConnected = false
 conf.buttonGpio = 3
-conf.relayGpio = 5 -- TODO: Change that!
+conf.relayGpio = 1
 conf.relayTimer = tmr.create()
 
 --Global functions

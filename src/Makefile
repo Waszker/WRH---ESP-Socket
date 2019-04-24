@@ -35,17 +35,17 @@ usage:
 
 # Upload one files only
 upload:
-	@python $(NODEMCU-UPLOADER) -b $(SPEED) -p $(PORT) upload $(FILE)
+	python2 $(NODEMCU-UPLOADER) -b $(SPEED) -p $(PORT) upload $(FILE)
 
 # Upload HTTP files only
 upload_http: $(HTTP_FILES)
-	@python $(NODEMCU-UPLOADER) -b $(SPEED) -p $(PORT) upload $(foreach f, $^, $(f))
+	python2 $(NODEMCU-UPLOADER) -b $(SPEED) -p $(PORT) upload $(foreach f, $^, $(f))
 
 # Upload httpserver lua files (init and server module)
 upload_server: $(LUA_FILES)
-	@python $(NODEMCU-UPLOADER) -b $(SPEED) -p $(PORT) upload $(foreach f, $^, $(f))
+	python2 $(NODEMCU-UPLOADER) -b $(SPEED) -p $(PORT) upload $(foreach f, $^, $(f))
 
 # Upload all
 upload_all: $(LUA_FILES) $(HTTP_FILES)
-	@python $(NODEMCU-UPLOADER) -b $(SPEED) -p $(PORT) upload $(foreach f, $^, $(f))
+	python2 $(NODEMCU-UPLOADER) -b $(SPEED) -p $(PORT) upload $(foreach f, $^, $(f))
 
