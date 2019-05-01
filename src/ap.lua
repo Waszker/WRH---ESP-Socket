@@ -28,7 +28,11 @@ if file.open("ap_list.txt", "r") ~= nil then
   wifi.setmode(wifi.STATIONAP)
   local ssid = string.gsub(file.readline(), '\n', '')
   local pwd = string.gsub(file.readline(), '\n', '')
-  wifi.sta.config(ssid, pwd, 1)
+  station_cfg = {}
+  station_cfg.ssid = ssid
+  station_cfg.pwd = pwd
+  station_cfg.auto = true
+  wifi.sta.config(station_cfg)
   print('Connecting to '..ssid..' using password '..pwd)
   file.close()
 end
